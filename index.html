@@ -21,12 +21,12 @@
 
 <body>
 
-  <!-- LOADING -->
+  <!-- LOADER -->
   <div id="loader">
     <h1>LILITH</h1>
   </div>
 
-  <!-- FUNDO GIF -->
+  <!-- FUNDO -->
   <div class="bg-gif"></div>
 
   <!-- OVERLAY -->
@@ -222,16 +222,19 @@
     })();
 
     /* ========================= */
-    /* CONTADOR */
+    /* GLOBAL VIEWS */
     /* ========================= */
 
-    let views = localStorage.getItem("views") || 0;
+    fetch("https://api.countapi.xyz/hit/lilithdiscord/views")
 
-    views++;
+    .then((res) => res.json())
 
-    localStorage.setItem("views", views);
+    .then((data) => {
 
-    document.getElementById("views").innerText = views;
+      document.getElementById("views").innerText =
+      data.value;
+
+    });
 
     /* ========================= */
     /* CHUVA */
@@ -243,7 +246,8 @@
 
       const drop = document.createElement("span");
 
-      drop.style.left = Math.random() * window.innerWidth + "px";
+      drop.style.left =
+      Math.random() * window.innerWidth + "px";
 
       drop.style.animationDuration =
       0.5 + Math.random() + "s";
