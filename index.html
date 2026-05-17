@@ -1,116 +1,68 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="pt-BR">
+      "VALORANT PLAYER"
+    ];
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    let count = 0;
+    let index = 0;
+    let currentText = "";
+    let letter = "";
 
-  <title>LILITH</title>
+    (function type(){
 
-  <!-- Fontes -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+      if(count === text.length){
+        count = 0;
+      }
 
-  <!-- Ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      currentText = text[count];
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-</head>
+      letter = currentText.slice(0, ++index);
 
-<body>
+      document.querySelector(".typing").textContent = letter;
 
-  <!-- GIF FUNDO -->
-  <div class="bg-gif"></div>
+      if(letter.length === currentText.length){
 
-  <!-- Grid -->
-  <div class="grid"></div>
+        count++;
+        index = 0;
 
-  <!-- Partículas -->
-  <div class="particles"></div>
+        setTimeout(type, 1400);
 
-  <!-- Música -->
-  <audio id="music" loop>
-    <source src="assets/music.mp3" type="audio/mp3">
-  </audio>
+      }else{
 
-  <!-- Card -->
-  <main class="card">
+        setTimeout(type, 80);
 
-    <!-- GIF Perfil -->
-    <img
-      src="assets/profile.gif"
-      alt="Lilith"
-      class="avatar"
-    >
+      }
 
-    <!-- Nome -->
-    <h1>LILITH</h1>
+    })();
 
-    <!-- Bio -->
-    <p class="bio">
-      CYBER SECURITY • DARK FEMME • GAMER
-    </p>
+    /* ========================= */
+    /* VIEWS COUNTER */
+    /* ========================= */
 
-    <!-- Linha -->
-    <div class="line"></div>
+    let views = localStorage.getItem("views") || 0;
 
-    <!-- Redes -->
-    <div class="links">
+    views++;
 
-      <a href="https://www.instagram.com/gi.olvs/" target="_blank">
-        <i class="fab fa-instagram"></i>
-        INSTAGRAM
-      </a>
+    localStorage.setItem("views", views);
 
-      <a href="https://www.tiktok.com/@gililithh" target="_blank">
-        <i class="fab fa-tiktok"></i>
-        TIKTOK
-      </a>
+    document.getElementById("views").innerText = views;
 
-      <a href="https://open.spotify.com/user/31ueoha6cik36seagfqlgpjokuja?si=8fa655dd8a5b4fc5" target="_blank">
-        <i class="fab fa-spotify"></i>
-        SPOTIFY
-      </a>
+    /* ========================= */
+    /* RAIN */
+    /* ========================= */
 
-      <a href="https://github.com/GiMomsen" target="_blank">
-        <i class="fab fa-github"></i>
-        GITHUB
-      </a>
+    const rain = document.querySelector('.rain');
 
-    </div>
+    for(let i = 0; i < 80; i++){
 
-    <!-- Footer -->
-    <footer>
-      DESIGNED BY LILITH
-    </footer>
+      const drop = document.createElement('span');
 
-  </main>
+      drop.style.left = Math.random() * window.innerWidth + 'px';
+      drop.style.animationDuration = 0.5 + Math.random() + 's';
+      drop.style.animationDelay = Math.random() * 5 + 's';
 
-  <!-- Cursor Glow -->
-  <div class="cursor-glow"></div>
+      rain.appendChild(drop);
 
-  <!-- Script -->
-  <script>
-
-    /* Música */
-
-    const music = document.getElementById("music");
-
-    document.addEventListener("click", () => {
-      music.play();
-    }, { once: true });
-
-    /* Cursor Glow */
-
-    const cursor = document.querySelector(".cursor-glow");
-
-    document.addEventListener("mousemove", (e) => {
-
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-
-    });
+    }
 
   </script>
 
